@@ -8,6 +8,10 @@ Create new project with Angular Cli
 
 Run `ng new angular-prerender-demo`
 
+Add universal
+
+Run `ng g universal universal-demo`
+
 Install modules for prerender
 
 Run `yarn add @alyle/angular-prerender@beta @angular/platform-server @nguniversal/module-map-ngfactory-loader -D`
@@ -33,7 +37,7 @@ Create file config in root project
 
 ## Build
 
-Run `ng build --prod && yarn prerender`
+Run `ng build --prod && ng build -aot -app universal-demo && yarn prerender`
 
 result:
 
