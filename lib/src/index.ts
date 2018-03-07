@@ -33,7 +33,7 @@ const BROWSER_FOLDER = join(rootDir, `${APP_BROWSER['outDir']}`);
 const SERVER_FOLDER = join(rootDir, `${APP_SERVER['outDir']}`);
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(join(BROWSER_FOLDER, `/main.bundle`));
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(join(SERVER_FOLDER, `/main.bundle`));
 
 // Load the index.html file containing referances to your application bundle.
 const INDEX = readFileSync(join(BROWSER_FOLDER, 'index.html'), 'utf8');
