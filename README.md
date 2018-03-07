@@ -10,7 +10,7 @@ Run `ng new angular-prerender-demo`
 
 Install modules for prerender
 
-Run `yarn add @alyle/angular-prerender @angular/platform-server @nguniversal/module-map-ngfactory-loader -D`
+Run `yarn add @alyle/angular-prerender@beta @angular/platform-server @nguniversal/module-map-ngfactory-loader -D`
 
 ## Config
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Load zone.js for the server.
 // tslint:disable-next-line:no-import-side-effect
 import 'zone.js/dist/zone-node';
@@ -21,9 +22,6 @@ import { transformUrl } from './common';
 
 const rootDir = process.cwd();
 
-// * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(`${rootDir}/dist-server/main.bundle`);
-
 const angularcliconfig = require(join(rootDir, '.angular-cli.json'));
 const PRE_RENDER_CONFIG = require(join(rootDir, '.prerender.conf.json'));
 
@@ -31,12 +29,11 @@ const PRE_RENDER_CONFIG = require(join(rootDir, '.prerender.conf.json'));
 const APP_BROWSER = angularcliconfig['apps'].find((item: any) => item['name'] === PRE_RENDER_CONFIG['app-name:browser']) || angularcliconfig['apps'][0];
 const APP_SERVER = angularcliconfig['apps'].find((item: any) => item['name'] === PRE_RENDER_CONFIG['app-name:server']);
 
-// /** Out directory */
-// if (!existsSync('dist-browser')) {
-//   mkdirSync('dist-browser');
-// }
 const BROWSER_FOLDER = join(rootDir, `${APP_BROWSER['outDir']}`);
 const SERVER_FOLDER = join(rootDir, `${APP_SERVER['outDir']}`);
+
+// * NOTE :: leave this as require() since this file is built Dynamically from webpack
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(join(BROWSER_FOLDER, `/main.bundle`));
 
 // Load the index.html file containing referances to your application bundle.
 const INDEX = readFileSync(join(BROWSER_FOLDER, 'index.html'), 'utf8');
