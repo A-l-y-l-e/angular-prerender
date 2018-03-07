@@ -1,0 +1,7 @@
+{
+  "app-name:server": "universal-demo",
+  "paths": [
+    "/",
+    "/lazy"
+  ]
+}

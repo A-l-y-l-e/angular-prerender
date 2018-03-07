@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -9,13 +9,21 @@
     "experimentalDecorators": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
-    "target": "es5",
+    "target": "es6",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2017",
+      "es6",
       "dom"
-    ]
-  }
+    ],
+    "module": "commonjs"
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "src"
+  ]
 }
