@@ -14,7 +14,7 @@ Run `ng g universal universal-demo`
 
 Install modules for prerender
 
-Run `yarn add @alyle/angular-prerender@beta @angular/platform-server @nguniversal/module-map-ngfactory-loader -D`
+Run `yarn add @alyle/angular-prerender@latest @angular/platform-server @nguniversal/module-map-ngfactory-loader -D`
 
 ## Config
 
@@ -22,7 +22,7 @@ Create file config in root project
 
 `.prerender.conf.json`
 
-```json
+```ts
 {
   /** App name */
   "app-name:server": "universal-demo",
@@ -41,7 +41,7 @@ Run `ng build --prod && ng build -aot -app universal-demo && yarn prerender`
 
 result:
 
-```bash
+```txt
 .
 ├── 0.a630cbd3c2dcc616b8f8.chunk.js
 ├── 3rdpartylicenses.txt
