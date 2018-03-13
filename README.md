@@ -27,7 +27,7 @@ Create file config in root project
   /** App name */
   "app-name:server": "universal-demo",
   /** App name browser(Opcional)*/
-  "app-name:server": "my-app-demo", // default 0
+  "app-name:browser": "my-app-demo", // default 0
   "paths": [
     "/",
     "/lazy"
