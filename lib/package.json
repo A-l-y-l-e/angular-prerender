@@ -1,6 +1,6 @@
 {
   "name": "@alyle/angular-prerender",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "dist/index.js",
   "repository": "https://github.com/A-l-y-l-e/angular-prerender",
   "author": "Alyle",

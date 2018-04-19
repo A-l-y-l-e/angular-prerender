@@ -47,7 +47,7 @@ const PATHS = () => {
     }
   });
 };
-PATHS().then((res) => console.log(res));
+
 /** Build */
 function build() {
   const ROUTES: {
@@ -71,15 +71,17 @@ function build() {
       if (!existsSync(fullPath)) {
         ensureDirSync(fullPath);
       }
-      console.time(`${route.file}`);
       /** Writes rendered HTML to index.html, replacing the file if it already exists. */
-      previousRender = previousRender.then(_ => renderModuleFactory(AppServerModuleNgFactory, {
-        document: INDEX,
-        url: join('/', route.route),
-        extraProviders: [
-          provideModuleMap(LAZY_MODULE_MAP)
-        ]
-      })).then(html => {
+      previousRender = previousRender.then(_ => {
+        console.time(`${route.file}`);
+        return renderModuleFactory(AppServerModuleNgFactory, {
+          document: INDEX,
+          url: join('/', route.route),
+          extraProviders: [
+            provideModuleMap(LAZY_MODULE_MAP)
+          ]
+        });
+      }).then(html => {
         console.timeEnd(`${route.file}`);
         writeFileSync(join(BROWSER_FOLDER, `${route.file}`), minify(html, {
           minifyCSS: true,
