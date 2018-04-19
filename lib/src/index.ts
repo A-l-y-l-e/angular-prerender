@@ -22,18 +22,13 @@ import { transformUrl } from './common';
 
 const rootDir = process.cwd();
 
-const angularcliconfig = require(join(rootDir, '.angular-cli.json'));
 const PRE_RENDER_CONFIG = require(join(rootDir, '.prerender.conf.json'));
 
-// tslint:disable-next-line:max-line-length
-const APP_BROWSER = angularcliconfig['apps'].find((item: any) => item['name'] === PRE_RENDER_CONFIG['app-name:browser']) || angularcliconfig['apps'][0];
-const APP_SERVER = angularcliconfig['apps'].find((item: any) => item['name'] === PRE_RENDER_CONFIG['app-name:server']);
-
-const BROWSER_FOLDER = join(rootDir, `${APP_BROWSER['outDir']}`);
-const SERVER_FOLDER = join(rootDir, `${APP_SERVER['outDir']}`);
+const BROWSER_FOLDER = join(rootDir, `${PRE_RENDER_CONFIG['browserPath']}`);
+const SERVER_FOLDER = join(rootDir, `${PRE_RENDER_CONFIG['serverPath']}`);
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(join(SERVER_FOLDER, `/main.bundle`));
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(SERVER_FOLDER);
 
 // Load the index.html file containing referances to your application bundle.
 const INDEX = readFileSync(join(BROWSER_FOLDER, 'index.html'), 'utf8');
@@ -76,7 +71,7 @@ function build() {
       if (!existsSync(fullPath)) {
         ensureDirSync(fullPath);
       }
-
+      console.time(`${route.file}`);
       /** Writes rendered HTML to index.html, replacing the file if it already exists. */
       previousRender = previousRender.then(_ => renderModuleFactory(AppServerModuleNgFactory, {
         document: INDEX,
@@ -84,12 +79,14 @@ function build() {
         extraProviders: [
           provideModuleMap(LAZY_MODULE_MAP)
         ]
-      })).then(html => writeFileSync(join(BROWSER_FOLDER, `${route.file}`), minify(html, {
-        minifyCSS: true,
-        removeComments: true,
-        collapseWhitespace: true
-      })));
-
+      })).then(html => {
+        console.timeEnd(`${route.file}`);
+        writeFileSync(join(BROWSER_FOLDER, `${route.file}`), minify(html, {
+          minifyCSS: true,
+          removeComments: true,
+          collapseWhitespace: true
+        }));
+      });
     });
   });
 }

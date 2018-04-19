@@ -1,5 +1,7 @@
 {
   "app-name:server": "universal-demo",
+  "browserPath": "dist",
+  "serverPath": "dist-server/main.bundle.js",
   "paths": [
     "/",
     "/lazy"

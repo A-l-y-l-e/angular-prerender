@@ -15,7 +15,7 @@
     "html-minifier": "^3.5.10"
   },
   "peerDependencies": {
-    "@angular/platform-server": "^5.2.0",
-    "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5"
+    "@angular/platform-server": "*",
+    "@nguniversal/module-map-ngfactory-loader": "^5.0.0"
   }
 }
