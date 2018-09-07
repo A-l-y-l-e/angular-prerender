@@ -1,6 +1,6 @@
 {
   "name": "@alyle/angular-prerender",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "main": "dist/index.js",
   "repository": "https://github.com/A-l-y-l-e/angular-prerender",
   "author": "Alyle",
@@ -12,10 +12,11 @@
   "dependencies": {
     "fs-extra": "^5.0.0",
     "node-fetch": "^2.1.1",
-    "html-minifier": "^3.5.10"
+    "html-minifier": "^3.5.10",
+    "rxjs": "^5.5.6"
   },
   "peerDependencies": {
     "@angular/platform-server": "*",
-    "@nguniversal/module-map-ngfactory-loader": "^5.0.0"
+    "@nguniversal/module-map-ngfactory-loader": "*"
   }
 }

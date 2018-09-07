@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 // Load zone.js for the server.
 // tslint:disable-next-line:no-import-side-effect
 import 'zone.js/dist/zone-node';
@@ -94,3 +95,7 @@ function build() {
 }
 
 build();
+
+if (PRE_RENDER_CONFIG.exitOnFinish) {
+  process.exit(0);
+}
